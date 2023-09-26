@@ -118,9 +118,9 @@ def generateTruthTable(expression: str, reverse=False, markdown=False, file=sys.
         for i in range(n):
             buf[i].value = (state >> (n - i - 1)) & 1 == 1
             print(getTableElement(
-                "FT"[buf[i].value], markdown=markdown, l = len(props[i])), end='', file=file)
+                "01"[buf[i].value], markdown=markdown, l = len(props[i])), end='', file=file)
         res = eval("(" + s + ").value",{v: buf[i] for i, v in enumerate(props + ['T', 'F'])})
-        print(getTableElement("FT"[res], markdown=markdown, l = len(expression)), file=file)
+        print(getTableElement("01"[res], markdown=markdown, l = len(expression)), file=file)
         tautology = tautology and res
         conflict = conflict or res
     if tautology:
